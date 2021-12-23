@@ -5,6 +5,7 @@ class Team(models.Model):
     lastname=models.CharField(max_length=120)
     email=models.CharField(max_length=120)
     phone=models.CharField(max_length=120)
+    isadmin=models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.firstname

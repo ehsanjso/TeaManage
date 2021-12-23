@@ -25,7 +25,7 @@ export default function Team() {
           <div className="team-list">
             {team.map((member) => (
               <MemberCard
-                isAdmin={true}
+                isAdmin={member.isadmin}
                 name={`${member.firstname} ${member.lastname}`}
                 phone={member.phone}
                 email={member.email}
