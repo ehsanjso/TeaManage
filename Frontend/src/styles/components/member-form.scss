@@ -1,0 +1,47 @@
+@import "../variables";
+
+.pos-radio-group {
+  width: 100%;
+
+  .ant-radio-wrapper {
+    color: $gray-400;
+  }
+
+  .ant-radio-wrapper-checked {
+    color: $black;
+  }
+}
+
+.pos-radio {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid $gray-200;
+
+  .ant-radio {
+    flex: 1;
+  }
+
+  span:not(.ant-radio) {
+    flex-basis: 100%;
+    text-align: left;
+  }
+}
+
+.form-headings {
+  margin: 20px 0;
+  font-weight: 500;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.form-btns {
+  .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

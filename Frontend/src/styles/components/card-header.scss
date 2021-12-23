@@ -1,0 +1,22 @@
+@import "../variables";
+
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: $white;
+  }
+
+  &__left {
+    h1 {
+      margin-bottom: 0;
+    }
+
+    p {
+      color: $gray-500;
+      font-weight: 400;
+    }
+  }
+}
