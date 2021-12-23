@@ -1,0 +1,22 @@
+@import "../variables";
+
+.member-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid $gray-300;
+}
+
+.member-detail {
+  width: 100%;
+  padding: 0 20px;
+
+  .admin-tag {
+    margin-left: 5px;
+  }
+
+  p {
+    color: $gray-500;
+  }
+}
