@@ -1,10 +1,12 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Spin } from "antd";
 import CardHeader from "./CardHeader";
 import MemberCard from "./MemberCard";
+import { useTeam } from "../contexts/TeamProvider";
 import "../styles/components/team.scss";
 
 export default function Team() {
+  const { team, fetchInProg } = useTeam();
   return (
     <Card
       title={
@@ -16,30 +18,23 @@ export default function Team() {
       }
       style={{ width: 400 }}
     >
-      <MemberCard
-        isAdmin={true}
-        name="Adrien Olczak"
-        phone="415-310-1619"
-        email="adrien@instawork.com"
-      />
-      <MemberCard
-        isAdmin={false}
-        name="Adrien Olczak"
-        phone="415-310-1619"
-        email="adrien@instawork.com"
-      />
-      <MemberCard
-        isAdmin={false}
-        name="Adrien Olczak"
-        phone="415-310-1619"
-        email="adrien@instawork.com"
-      />
-      <MemberCard
-        isAdmin={false}
-        name="Adrien Olczak"
-        phone="415-310-1619"
-        email="adrien@instawork.com"
-      />
+      <div className="team-card-body">
+        {fetchInProg ? (
+          <Spin size="large" />
+        ) : (
+          <div className="team-list">
+            {team.map((member) => (
+              <MemberCard
+                isAdmin={true}
+                name={`${member.firstname} ${member.lastname}`}
+                phone={member.phone}
+                email={member.email}
+                key={member.phone}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </Card>
   );
 }
