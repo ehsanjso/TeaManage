@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Team
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display=("firstname", "lastname", "email", "phone", "isadmin")
+    list_display=("id", "firstname", "lastname", "email", "phone", "isadmin")
 
 
 # Register model

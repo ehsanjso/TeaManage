@@ -9,9 +9,7 @@ import MemberForm from "./MemberForm";
 export default function EditMember() {
   const { team } = useTeam();
   const params = useParams();
-  const member = find(propEq("phone", params.id))(team);
-
-  console.log(member);
+  const member = find(propEq("id", parseInt(params.id, 10)))(team);
 
   return (
     <Card

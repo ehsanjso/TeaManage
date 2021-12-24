@@ -29,7 +29,8 @@ export default function Team() {
                 name={`${member.firstname} ${member.lastname}`}
                 phone={member.phone}
                 email={member.email}
-                key={member.phone}
+                id={member.id}
+                key={member.id}
               />
             ))}
           </div>

@@ -4,13 +4,13 @@ import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import "../styles/components/member-card.scss";
 
-export default function MemberCard({ isAdmin, name, phone, email }) {
+export default function MemberCard({ isAdmin, name, phone, email, id }) {
   let navigate = useNavigate();
   return (
     <div
       className="member-card"
       onClick={() => {
-        navigate(`/member/${phone}`);
+        navigate(`/member/${id}`);
       }}
     >
       <div className="member-avatar">

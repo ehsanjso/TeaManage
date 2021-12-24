@@ -37,6 +37,34 @@ export function TeamProvider({ children }) {
     setFetchInProg(false);
   };
 
+  const updateMember = async (values) => {
+    setFetchInProg(true);
+    try {
+      await axios.post(`${host}/api/members/`, values);
+      setTeam((prevMembers) => {
+        const members = prevMembers ? [...prevMembers] : [];
+        members.push(values);
+        return members;
+      });
+      navigation("/");
+    } catch (error) {}
+    setFetchInProg(false);
+  };
+
+  const deleteMember = async (values) => {
+    setFetchInProg(true);
+    try {
+      await axios.post(`${host}/api/members/`, values);
+      setTeam((prevMembers) => {
+        const members = prevMembers ? [...prevMembers] : [];
+        members.push(values);
+        return members;
+      });
+      navigation("/");
+    } catch (error) {}
+    setFetchInProg(false);
+  };
+
   return (
     <TeamContext.Provider value={{ team, fetchInProg, addMember }}>
       {children}
