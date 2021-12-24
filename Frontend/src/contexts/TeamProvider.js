@@ -40,11 +40,14 @@ export function TeamProvider({ children }) {
   const updateMember = async (values) => {
     setFetchInProg(true);
     try {
-      await axios.put(`${host}/api/members/`, values);
+      await axios.put(`${host}/api/members/${values.id}/`, values);
       setTeam((prevMembers) => {
-        const members = prevMembers ? [...prevMembers] : [];
-        members.push(values);
-        return members;
+        return prevMembers.map((el) => {
+          if (el["id"] === values["id"]) {
+            return values;
+          }
+          return el;
+        });
       });
       navigation("/");
     } catch (error) {}

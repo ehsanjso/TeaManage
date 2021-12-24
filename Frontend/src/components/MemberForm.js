@@ -96,7 +96,11 @@ export default function MemberForm(props) {
   };
 
   const onFinish = (values) => {
-    addMember(values);
+    if (editMode) {
+      updateMember({ id, ...values });
+    } else {
+      addMember(values);
+    }
   };
 
   return (
