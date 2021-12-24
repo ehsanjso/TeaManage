@@ -1,11 +1,18 @@
 import React from "react";
 import { Avatar, Tag } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import "../styles/components/member-card.scss";
 
 export default function MemberCard({ isAdmin, name, phone, email }) {
+  let navigate = useNavigate();
   return (
-    <div className="member-card">
+    <div
+      className="member-card"
+      onClick={() => {
+        navigate(`/member/${phone}`);
+      }}
+    >
       <div className="member-avatar">
         <Avatar size={64} icon={<UserOutlined />} />
       </div>
