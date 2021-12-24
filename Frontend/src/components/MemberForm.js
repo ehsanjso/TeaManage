@@ -7,9 +7,9 @@ import axios from "axios";
 import "../styles/components/member-form.scss";
 
 export default function MemberForm(props) {
-  const { addMember, fetchInProg } = useTeam();
+  const { addMember, fetchInProg, deleteMember, updateMember } = useTeam();
   const [infoForm] = Form.useForm();
-  const { firstname, lastname, phone, email, editMode, isadmin } = props;
+  const { firstname, lastname, phone, email, editMode, isadmin, id } = props;
 
   const validateEmail = (email) => {
     return String(email)
@@ -138,7 +138,15 @@ export default function MemberForm(props) {
             Save
           </Button>
           {editMode && (
-            <Button htmlType="button" size="large" danger loading={fetchInProg}>
+            <Button
+              htmlType="button"
+              size="large"
+              danger
+              loading={fetchInProg}
+              onClick={() => {
+                deleteMember(id);
+              }}
+            >
               Delete
             </Button>
           )}

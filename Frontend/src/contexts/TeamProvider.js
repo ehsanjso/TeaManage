@@ -17,7 +17,7 @@ export function TeamProvider({ children }) {
   useEffect(() => {
     async function getTeam() {
       const { data } = await axios.get(`${host}/api/members`);
-      setTeam(data);
+      setTeam(data.reverse());
       setFetchInProg(false);
     }
     getTeam();
@@ -40,7 +40,7 @@ export function TeamProvider({ children }) {
   const updateMember = async (values) => {
     setFetchInProg(true);
     try {
-      await axios.post(`${host}/api/members/`, values);
+      await axios.put(`${host}/api/members/`, values);
       setTeam((prevMembers) => {
         const members = prevMembers ? [...prevMembers] : [];
         members.push(values);
@@ -51,14 +51,14 @@ export function TeamProvider({ children }) {
     setFetchInProg(false);
   };
 
-  const deleteMember = async (values) => {
+  const deleteMember = async (id) => {
     setFetchInProg(true);
     try {
-      await axios.post(`${host}/api/members/`, values);
+      await axios.delete(`${host}/api/members/${id}`);
       setTeam((prevMembers) => {
         const members = prevMembers ? [...prevMembers] : [];
-        members.push(values);
-        return members;
+        const finalTeam = R.filter((el) => el.id !== id, members);
+        return finalTeam;
       });
       navigation("/");
     } catch (error) {}
@@ -66,7 +66,9 @@ export function TeamProvider({ children }) {
   };
 
   return (
-    <TeamContext.Provider value={{ team, fetchInProg, addMember }}>
+    <TeamContext.Provider
+      value={{ team, fetchInProg, addMember, updateMember, deleteMember }}
+    >
       {children}
     </TeamContext.Provider>
   );

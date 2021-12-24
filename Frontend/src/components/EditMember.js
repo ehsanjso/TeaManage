@@ -15,8 +15,8 @@ export default function EditMember() {
     <Card
       title={
         <CardHeader
-          header="Team members"
-          subHeader="You have 3 team members."
+          header="Edit team member"
+          subHeader="Edit contact info, location and role."
           hasButton={false}
         />
       }

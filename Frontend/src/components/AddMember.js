@@ -8,8 +8,8 @@ export default function AddMember() {
     <Card
       title={
         <CardHeader
-          header="Team members"
-          subHeader="You have 3 team members."
+          header="Add a team member"
+          subHeader="Set email, location and role."
           hasButton={false}
         />
       }
