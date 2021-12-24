@@ -4,8 +4,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 20px 0;
+  padding: 20px 20px;
   border-bottom: 1px solid $gray-200;
+  cursor: pointer;
+  transition: 0.2s all ease;
+
+  &:hover {
+    background: $gray-100;
+  }
 }
 
 .member-detail {

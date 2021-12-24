@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, Spin } from "antd";
+import { useTeam } from "../contexts/TeamProvider";
+import { useNavigate } from "react-router-dom";
 import CardHeader from "./CardHeader";
 import MemberCard from "./MemberCard";
-import { useTeam } from "../contexts/TeamProvider";
 import "../styles/components/team.scss";
 
 export default function Team() {
+  let navigate = useNavigate();
   const { team, fetchInProg } = useTeam();
   return (
     <Card
@@ -30,6 +32,9 @@ export default function Team() {
                 phone={member.phone}
                 email={member.email}
                 key={member.phone}
+                onClick={() => {
+                  navigate(`/member/${member.phone}`);
+                }}
               />
             ))}
           </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { host } from "../actions/consts/host";
+import { useNavigate } from "react-router-dom";
 import * as R from "ramda";
 
 const TeamContext = React.createContext();
@@ -10,6 +11,7 @@ export function useTeam() {
 }
 
 export function TeamProvider({ children }) {
+  const navigation = useNavigate();
   const [team, setTeam] = useState([]);
   const [fetchInProg, setFetchInProg] = useState(true);
   useEffect(() => {
@@ -21,8 +23,22 @@ export function TeamProvider({ children }) {
     getTeam();
   }, []);
 
+  const addMember = async (values) => {
+    setFetchInProg(true);
+    try {
+      await axios.post(`${host}/api/members/`, values);
+      setTeam((prevMembers) => {
+        const members = prevMembers ? [...prevMembers] : [];
+        members.push(values);
+        return members;
+      });
+      navigation("/");
+    } catch (error) {}
+    setFetchInProg(false);
+  };
+
   return (
-    <TeamContext.Provider value={{ team, fetchInProg }}>
+    <TeamContext.Provider value={{ team, fetchInProg, addMember }}>
       {children}
     </TeamContext.Provider>
   );
