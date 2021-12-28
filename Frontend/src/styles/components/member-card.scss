@@ -8,19 +8,21 @@
   border-bottom: 1px solid $gray-200;
   cursor: pointer;
   transition: 0.2s all ease;
+  position: relative;
 
   &:hover {
     background: $gray-100;
+  }
+  .admin-tag {
+    right: 0;
+    position: absolute;
+    top: 22px;
   }
 }
 
 .member-detail {
   width: 100%;
   padding: 0 20px;
-
-  .admin-tag {
-    margin-left: 5px;
-  }
 
   p {
     color: $gray-500;

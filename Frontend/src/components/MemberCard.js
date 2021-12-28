@@ -18,17 +18,15 @@ export default function MemberCard({ isAdmin, name, phone, email, id }) {
       </div>
 
       <div className="member-detail">
-        <h3>
-          {name}{" "}
-          {isAdmin && (
-            <Tag color="#f50" className="admin-tag">
-              admin
-            </Tag>
-          )}
-        </h3>
+        <h3>{name}</h3>
         <p>{phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</p>
         <p>{email}</p>
       </div>
+      {isAdmin && (
+        <Tag color="#f50" className="admin-tag">
+          admin
+        </Tag>
+      )}
     </div>
   );
 }
