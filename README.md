@@ -1,28 +1,38 @@
 # TeaManage
 
-## Backend
+## Run locally
+
+### Backend
 
 Project needs python v3 and pip should be installed.
 To setup the backend and run it. in /Backend run the commands as follows:
 
-`pip install -r requirements.txt`
-`python manage.py makemigrations`
-`python manage.py migrate`
-`python manage.py runserver`
+```bash
+# Setup
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
 
-## Frontend
+
+# Start the backend
+python manage.py runserver
+```
+
+### Frontend
 
 In the /Frontend directory:
 
-### yarn
+```bash
+# If you use yarn
+yarn
+yarn start
+```
 
-`yarn`
-`yarn start`
-
-### npm
-
-`npm i`
-`npm run start`
+```bash
+# If you use npm
+npm i
+npm run start
+```
 
 ## Deploy the application on your sever
 
