@@ -1,11 +1,8 @@
 import React from "react";
-import * as R from "ramda";
-import { host } from "../actions/consts/host";
 import MaskedInput from "antd-mask-input";
 import { Form, Input, Radio, ConfigProvider, Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useTeam } from "../contexts/TeamProvider";
-import axios from "axios";
 import "../styles/components/member-form.scss";
 
 export default function MemberForm(props) {
