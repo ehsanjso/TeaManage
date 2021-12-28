@@ -133,29 +133,31 @@ export default function MemberForm(props) {
           </Radio.Group>
         </Form.Item>
       </ConfigProvider>
-      <Form.Item className="form-btns">
-        {editMode && (
-          <Popconfirm
-            title="Are you sure？"
-            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-            onConfirm={() => {
-              deleteMember(id);
-            }}
+      <ConfigProvider direction={editMode ? "ltr" : "rtl"}>
+        <Form.Item className="form-btns">
+          {editMode && (
+            <Popconfirm
+              title="Are you sure？"
+              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+              onConfirm={() => {
+                deleteMember(id);
+              }}
+            >
+              <Button size="large" danger loading={fetchInProg}>
+                Delete
+              </Button>
+            </Popconfirm>
+          )}
+          <Button
+            type="primary"
+            htmlType="submit"
+            size="large"
+            loading={fetchInProg}
           >
-            <Button size="large" danger loading={fetchInProg}>
-              Delete
-            </Button>
-          </Popconfirm>
-        )}
-        <Button
-          type="primary"
-          htmlType="submit"
-          size="large"
-          loading={fetchInProg}
-        >
-          Save
-        </Button>
-      </Form.Item>
+            Save
+          </Button>
+        </Form.Item>
+      </ConfigProvider>
     </Form>
   );
 }
