@@ -4,7 +4,7 @@ services:
     container_name: frontend
     restart: always
     build:
-      context: frontend
+      context: Frontend
       dockerfile: Dockerfile
     ports:
       - "80:80"
@@ -12,13 +12,17 @@ services:
       - backend
     depends_on:
       - backend
+
   backend:
     container_name: backend
     restart: always
     build:
-      context: backend
+      context: Backend
       dockerfile: Dockerfile
+    command: sh /api/run_web.sh
+
     volumes:
+      - ./Backend:/api
       - ./Backend/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"
