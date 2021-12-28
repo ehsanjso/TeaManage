@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { message } from "antd";
 import axios from "axios";
 import { host } from "../actions/consts/host";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +34,12 @@ export function TeamProvider({ children }) {
         return members;
       });
       navigation("/");
-    } catch (error) {}
+      message.success(
+        `User ${values.firstname} ${values.lastname} added successfully`
+      );
+    } catch (error) {
+      message.error("This is an error message");
+    }
     setFetchInProg(false);
   };
 
@@ -50,7 +56,12 @@ export function TeamProvider({ children }) {
         });
       });
       navigation("/");
-    } catch (error) {}
+      message.success(
+        `User ${values.firstname} ${values.lastname} updated successfully`
+      );
+    } catch (error) {
+      message.error("This is an error message");
+    }
     setFetchInProg(false);
   };
 
@@ -64,7 +75,10 @@ export function TeamProvider({ children }) {
         return finalTeam;
       });
       navigation("/");
-    } catch (error) {}
+      message.success(`User deleted successfully`);
+    } catch (error) {
+      message.error("This is an error message");
+    }
     setFetchInProg(false);
   };
 
