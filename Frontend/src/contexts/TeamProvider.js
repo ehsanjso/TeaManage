@@ -30,7 +30,7 @@ export function TeamProvider({ children }) {
       await axios.post(`${host}/api/members/`, values);
       setTeam((prevMembers) => {
         const members = prevMembers ? [...prevMembers] : [];
-        members.push(values);
+        members.unshift(values);
         return members;
       });
       navigation("/");

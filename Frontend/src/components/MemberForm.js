@@ -1,6 +1,7 @@
 import React from "react";
 import * as R from "ramda";
 import { host } from "../actions/consts/host";
+import MaskedInput from "antd-mask-input";
 import { Form, Input, Radio, ConfigProvider, Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useTeam } from "../contexts/TeamProvider";
@@ -97,10 +98,11 @@ export default function MemberForm(props) {
   };
 
   const onFinish = (values) => {
+    const finalValues = { ...values, phone: values.phone.replace(/-/g, "") };
     if (editMode) {
-      updateMember({ id, ...values });
+      updateMember({ id, ...finalValues });
     } else {
-      addMember(values);
+      addMember(finalValues);
     }
   };
 
@@ -118,7 +120,11 @@ export default function MemberForm(props) {
       </Form.Item>
 
       <Form.Item {...formFields.field_phone} hasFeedback>
-        <Input placeholder="415-310-1619" size="large" />
+        <MaskedInput
+          mask="111-111-1111"
+          placeholder="415-310-1619"
+          size="large"
+        />
       </Form.Item>
       <h3 className="form-headings">Role</h3>
       <ConfigProvider direction="rtl">
