@@ -17,8 +17,12 @@ export function TeamProvider({ children }) {
   const [fetchInProg, setFetchInProg] = useState(true);
   useEffect(() => {
     async function getTeam() {
-      const { data } = await axios.get(`${host}/api/members`);
-      setTeam(data.reverse());
+      try {
+        const { data } = await axios.get(`${host}/api/members`);
+        setTeam(data.reverse());
+      } catch (error) {
+        message.error("This is an error message");
+      }
       setFetchInProg(false);
     }
     getTeam();
