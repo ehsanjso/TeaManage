@@ -1,7 +1,8 @@
 import React from "react";
 import * as R from "ramda";
 import { host } from "../actions/consts/host";
-import { Form, Input, Radio, ConfigProvider, Button } from "antd";
+import { Form, Input, Radio, ConfigProvider, Button, Popconfirm } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useTeam } from "../contexts/TeamProvider";
 import axios from "axios";
 import "../styles/components/member-form.scss";
@@ -131,31 +132,30 @@ export default function MemberForm(props) {
             </Radio>
           </Radio.Group>
         </Form.Item>
-
-        <Form.Item className="form-btns">
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            loading={fetchInProg}
+      </ConfigProvider>
+      <Form.Item className="form-btns">
+        {editMode && (
+          <Popconfirm
+            title="Are you sure？"
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+            onConfirm={() => {
+              deleteMember(id);
+            }}
           >
-            Save
-          </Button>
-          {editMode && (
-            <Button
-              htmlType="button"
-              size="large"
-              danger
-              loading={fetchInProg}
-              onClick={() => {
-                deleteMember(id);
-              }}
-            >
+            <Button size="large" danger loading={fetchInProg}>
               Delete
             </Button>
-          )}
-        </Form.Item>
-      </ConfigProvider>
+          </Popconfirm>
+        )}
+        <Button
+          type="primary"
+          htmlType="submit"
+          size="large"
+          loading={fetchInProg}
+        >
+          Save
+        </Button>
+      </Form.Item>
     </Form>
   );
 }
