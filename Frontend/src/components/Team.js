@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Spin } from "antd";
+import { Card, Spin, Empty } from "antd";
 import { useTeam } from "../contexts/TeamProvider";
 import CardHeader from "./CardHeader";
 import MemberCard from "./MemberCard";
@@ -7,6 +7,7 @@ import "../styles/components/team.scss";
 
 export default function Team() {
   const { team, fetchInProg } = useTeam();
+  const hasNoMember = team.length === 0;
   return (
     <Card
       title={
@@ -33,6 +34,7 @@ export default function Team() {
                 key={member.id}
               />
             ))}
+            {hasNoMember && <Empty />}
           </div>
         )}
       </div>
